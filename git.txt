@@ -36,6 +36,7 @@ git log [--stat]
 //--stat 给出每次提交所更改的文件的统计数据,如每次提交更改的文件等
 git log [--graph] [--online] branch_name1 branch_name2
 //可视化查看branch_name1，branch_name2分支的提交历史记录
+git log [-n] [number]  //指定显示提交的条数
 ///按住q或Ctrl+c 退出查看
 
 #4#查找commit差异
@@ -52,7 +53,6 @@ git clone 版本库URL
 #7#检出代码的旧版本
 git checkout commit_id  //临时恢复到指定commit的状态，用于锁定bug出现位置
 ///不同于SVN中的checkout指令
-///git checkout master使。。。。。。。。。。。。。。。。
 
 #8#初始化版本库
 git init  //初始化后并不会自动创建commit，可使用git log查看
@@ -90,6 +90,47 @@ git commit  //使用编辑器编写commit消息，第一行用祈使句描述当前commit中的更改
 #11#创建分支
 git branch  //显示当前分支,标记了*的分支为当前checkout(检出)的分支
 git branch branch_name  //创建分支branch_name
-git checkout branch_name  //进入分支branch_name
+
+#12#检出分支
+git checkout [branch_name/commit_id]  //进入分支branch_name
 ///使用分支增加协同工作的效率和条理性，或者用于测试不会在正式版本中出现的新功能
 ///各分支在合并以前不会互相影响
+git checkout -b branch_name  //相当于运行两个指令：首先创建分支，然后检出分支
+
+#13#合并简单文件
+git merge branch_name1 branch_name2  //创建两个分支的合并版本
+///如果当前检出的分支不是branch_	name1或branch_name2,则该指令会默认将当前检出分支与branch_name1,branch_name2合并。因此要想避免此类情况，合并前务必检出到需要合并的两个分支之一
+
+#########################################
+
+(bn2)              -->b1-->b2-->b3--->
+                   |                 |
+                   |    merge------->---->a1 (master)
+                   |        |      
+(master)c1-->c2-->c3-->c4-->c5-->c6
+                                
+1.master分支在初始化时有系统自动创建
+2.使用git merge指令合并master分支和bn2分支
+3.合并前在各分支使用git log只能查看到该分支可达的提交节点
+例如：检出bn2时，只能查看到从c1到b3路径上的提交，无法查看到创建分支以后master分支上c4,c5,c6提交
+4.前一次提交称为后一次提交的父提交
+5.合并以后a1以前的提交将按照提交的时间先后排列，使用git log则可以查看合并分支的提交情况
+6.合并后原各分支上在检出提交以后的提交将不可达
+7.合并后要想查看任一提交以前的真实父提交则需要使用git show commit_name指令
+
+#########################################
+
+#14#删除分支
+git branch dash -d branch_name  //并不会删除分支中的提交，只是删除了分支名称/标签
+
+#15#合并冲突
+1.git merge --abort  //将文件恢复到合并前的状态
+2.仔细检查文件的状态，找出冲突位置并解决
+3.使用git status查看当前状态，使用git add将已解决冲突的合并操作添加到暂存区
+4.git commit提交合并
+
+
+#16#更新测试分支
+自创建测试性分支（进行试验或实现新特性）以来，master主分支已经更新。而你可能想将主分支中的更新包含到测试分支中。你希望定期地将master合并到该分支，这是很常见的做法。这是因为，master通常包含代码的正式版本，而且，希望试验性的更改包含所有对master的更改是很常见的想法。
+
+#17#
