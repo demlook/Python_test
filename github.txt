@@ -15,3 +15,41 @@ git pull repository_name branch_name
 #5#fork版本库
 在github上使用fork，将他人的版本库克隆到自己的目录下
 //使用者可以直接在github上进行修改，或者拉取到本地计算机上操作
+///注意clone,fork区别
+
+#6#将远程仓库克隆到本地
+git clone remoterepository_URL
+///不需要手动将添加远程仓库
+///因为在使用git clone时，本地的远程仓库会自动设置为被克隆的远程仓库
+
+#7#添加合作者 
+setting-->collaborator-->add collaborator
+//添加合作者，给予其更新该github仓库的权限
+
+#8#更新远程分支的本地副本
+
+----------------------------      ----------------------------
+|          local           |origin|         github           |
+|(origin/master)   -->a3   |----->|                          |
+|                  |       |      |(master)    a1->a2->a3    |
+|(master)     a1->a2->a3'  |<-----|                          |
+|                          | fetch|                          |
+----------------------------      ----------------------------
+
+1.在最近一次的同步以后，本地仓库和远程仓库都产生了新的提交
+2.使用fetch将远程分支复制到本地(其中a3即来自远程github上的提交)
+3.使用git merge合并分支到master中(可以不必急于合并，可能存在冲突)
+///使用git fetch也便于查看其它分支上的提交情况
+git fetch + git merge <=> git pull
+
+#9#快速合并
+如果合并分支是被合并分支的祖先(即从被合并分支到合并分支可达)则会产生快速合并的情况
+快速合并不会产生新的提交，因为被合并分支已经包含了合并分支的提交,如:
+合并分支a,b
+                          -->a-->   
+                          |     |
+o-->a-->o-->b       o-->o-->o-->o-->b
+
+#10#创建拉取请求
+pull request
+///在运行git pull origin master时，唯一会改变的是本地master。但是，在运行 git pull时，工作目录和暂存区也会更新。因此，在运行git pull时，不仅看到 git log的输出会更新，还将看到你的文件会更新。
