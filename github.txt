@@ -1,1 +1,17 @@
-123
+#1#查看远程仓库
+git remote [-v]  //verbose 详细显示
+
+#2#添加远程仓库
+git remote add repository_name remoterepository_URL
+///如果是首次添加，一般会将repository_name命名为origin
+///可选择使用https url或者ssh url
+
+#3#向github推送更改
+git push -u repository_name branch_name
+
+#4#从远程拉取更改
+git pull repository_name branch_name
+
+#5#fork版本库
+在github上使用fork，将他人的版本库克隆到自己的目录下
+//使用者可以直接在github上进行修改，或者拉取到本地计算机上操作
