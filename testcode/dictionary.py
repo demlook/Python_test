@@ -124,6 +124,15 @@ for name,value in cities.items():
     print("\tAmount of People:" + value['population'])
     print("\tDescribe:" + value['describe'])
 
+'''
+for循环中不应修改列表或字典
+系统将会因为无法追踪元素而报错（dictionary changed size during iteration）！！！
 
+dict.pop(key)  删除指定键key对应的值，并返回被删除的值
+dict.popitem()  随机返回并删除字典中的一对键和值(一般删除末尾对)
+del dict[key]  删除键key，键值对也将从字典中删除
+dict.clear()  清空字典
+del dict  删除字典
+'''
 
 
