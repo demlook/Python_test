@@ -1,9 +1,3 @@
-#循环输入
-nums = [1,2,3,4,5]
-for i in range(0,5):
-	nums[i] = int(input())
-print(nums)
-
 #匹配
 current_users = ["admin","root","guest","passenger","visitor"]
 new_users = ["RoOt","guEst","reader","cook","driver"]
