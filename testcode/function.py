@@ -153,6 +153,34 @@ from printing_function import build_profile as bp
 
 user_profile = bp('si','li',weight='60kg',location='China')
 print(user_profile)
+####################################################################
+# Python 标准库
+# test-1
+from collections import OrderedDict
+
+favorite_singers = OrderedDict()
+
+favorite_singers['Jack'] = 'Taylor'
+favorite_singers['Tim'] = 'Justin'
+favorite_singers['Bob'] = 'Rihanna'
+favorite_singers['Rose'] = 'S.H.E.'
+
+for name,singer in favorite_singers.items():
+	print(name + "'s favorite singer is " + singer)
+
+#test-2
+from random import randint
+class Die():
+	def __init__(self,sides=6):
+		self.sides = sides
+
+	def roll_die(self):
+		print(randint(1,self.sides))
+
+dice = Die(20)
+for n in range(1,11):
+	dice.roll_die()
+
 #####################################################################
 '''
 注意事项：
