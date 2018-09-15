@@ -147,7 +147,7 @@ icecream.read_number_served()
 icecream.increment_number_served(500)
 icecream.read_number_served()
 ############################################################################
-test-2
+#test-2
 class Admin(User):
 	def __init__(self,first_name,last_name,role,**user_info):
 		super().__init__(first_name,last_name,**user_info)
@@ -198,6 +198,35 @@ user.describe_user()
 
 user_2 = Admin(last_name='zhang',first_name='san',role='guest')
 user_2.privilege.show_privileges()
+
+###########################################################################
+# Python 标准库
+# test-1
+from collections import OrderedDict
+
+favorite_singers = OrderedDict()
+
+favorite_singers['Jack'] = 'Taylor'
+favorite_singers['Tim'] = 'Justin'
+favorite_singers['Bob'] = 'Rihanna'
+favorite_singers['Rose'] = 'S.H.E.'
+
+for name,singer in favorite_singers.items():
+	print(name + "'s favorite singer is " + singer)
+
+#test-2
+from random import randint
+class Die():
+	def __init__(self,sides=6):
+		self.sides = sides
+
+	def roll_die(self):
+		print(randint(1,self.sides))
+
+dice = Die(20)
+for n in range(1,11):
+	dice.roll_die()
+
 ###########################################################################
 '''
 # 导入类
@@ -212,5 +241,8 @@ import 模块名
 from 模块名 import *
 5.从一个模块中导入另一个模块
 如：子类与父类不在一个模块时，子类需要导入父类
+6.类名应采用驼峰命名法（ElectricCar），即每个单词首字母都大写且不使用下划线
+7.实例名和模块名都采用小写格式（add_privileges），并在单词之间添加下划线
+8.先导入标准库中模块，空一行后再添加导入自己编写的模块
 
 '''
