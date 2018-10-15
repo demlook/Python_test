@@ -1,0 +1,30 @@
+{% extends 'learning_logs/base.html' %}
+{% block content %}
+
+  <!-- 双花括号被替换为对应的值 -->
+  <p>Topic: {{ topic }}</p>
+
+  <p>Entries:</p>
+  <p>
+    <a href="{% url 'learning_logs:new_entry' topic.id %}">add new entry</a>
+  </p>
+  <!-- 用ul标签存放项目列表 -->
+  <ul>
+  {% for entry in entries %}
+    <li>
+      <!-- 竖线(|)表示模板过滤器，对模板变量的值进行修改的函数 -->
+    	<p>{{ entry.date_added|date:'M d,Y H:i' }}</p>
+      <!-- 过滤器linebreaks将包含换行符的长条目转换为浏览器能理解的格式  -->
+    	<p>{{ entry.text|linebreaks }}</p>
+      <p>
+        <a href="{% url 'learning_logs:edit_entry' entry.id %}">edit entry</a>
+      </p>
+    </li>
+  {% empty %}
+    <li>
+      There are no entries for this topic yet.
+    </li>
+  {% endfor %}
+  </ul>
+
+{% endblock content %}
