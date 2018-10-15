@@ -1,0 +1,18 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+<p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+
+<p>Edit entry:</p>
+<!-- 
+定义一个HTML表单
+实参action指定服务器将表单数据发送至哪里，这里是视图函数edit_entry()
+实参method让浏览器以POST方式提交数据
+-->
+<form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button name='submit'>save changes</button>
+</form>
+
+{% endblock content %}
